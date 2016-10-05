@@ -3,7 +3,7 @@ CREATE TABLE restaurants2 (
   id serial primary key,
   name varchar UNIQUE,
   distance real NOT NULL,
-  stars real,
+  stars numeric,
   category varchar,
   favdish varchar,
   takeout boolean,
@@ -49,17 +49,18 @@ select name, lastate, stars from restaurants2 where lastate < '2016-09-28' and s
 -- Aggregation and Sorting Queries
 
 -- 1. list restaurants by the closest distance.
-
+select name, distance from restaurants2 order by distance desc;
 -- 2. list the top 2 restaurants by distance.
-
+select name, distance from restaurants2 order by distance limit 2;
 -- 3. list the top 2 restaurants by stars.
-
+select name, stars from restaurants2 order by stars desc limit 2;
 -- 4. list the top 2 restaurants by stars where the distance is less than 2 miles.
-
+select name, stars, distance from restaurants2 where distance < 2.0 order by stars desc limit 2;
 -- 5. count the number of restaurants in the db.
-
+select count(*) from restaurants2;
 -- 6. count the number of restaurants by category.
-
+select category, count(*) from restaurants2 group by category;
 -- 7. get the average stars per restaurant by category.
-
+select round(avg(stars), 2), category from restaurants2 group by category; -- note: round() function will not round reals, only numerics or decimals. Had to convert 'stars' to numeric in Postico structure tab. Made corresponding change to CREAT TABLE above.
 -- 8. get the max stars of a restaurant by category.
+select max(stars), category from restaurants2 group by category;
