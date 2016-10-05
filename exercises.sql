@@ -21,3 +21,45 @@ INSERT INTO restaurants2 (name, distance, stars, category, favdish, takeout, las
 INSERT INTO restaurants2 (name, distance, stars, category, favdish, takeout, lastate) values ('Pea Ridge', 8, 4.2, 'Casual', 'Trout Banh Mi', true, '2016-06-25');
 INSERT INTO restaurants2 (name, distance, stars, category, favdish, takeout, lastate) values ('Farmburger', .01, 4.0, 'Casual', 'Burger', true, '2016-04-15');
 INSERT INTO restaurants2 (name, distance, stars, category, favdish, takeout) values ('Bones', 2, 4.0, 'Fast Food', 'Steak', false);
+
+-- Select everything from table restaurants2
+select * from restaurants2;
+
+-- Write queries to get:
+
+-- 1. The names of the restaurants that you gave a 5 stars to
+select * from restaurants2 where stars = 5;
+-- 2. The favorite dishes of all 5-star restaurants
+select favdish from restaurants2 where stars = 5;
+-- 3. The the id of a restaurant by a specific restaurant name, say 'NaanStop'
+select id, name from restaurants2 where name = 'NaanStop';
+-- 4. restaurants in the category of 'BBQ'
+select name, category from restaurants2 where category = 'Fast Food';
+-- 5. restaurants that do take out
+select * from restaurants2 where takeout = true;
+-- 6. restaurants that do take out and is in the category of 'BBQ'
+select * from restaurants2 where takeout = true and category = 'Fast Food';
+-- 7. restaurants within 2 miles
+select name, distance from restaurants2 where distance < 2.0;
+-- 8. restaurants you haven't ate at in the last week
+select name, lastate from restaurants2 where lastate < '2016-09-28';
+-- 9. restaurants you haven't ate at in the last week and has 5 stars
+select name, lastate, stars from restaurants2 where lastate < '2016-09-28' and stars = 5;
+
+-- Aggregation and Sorting Queries
+
+-- 1. list restaurants by the closest distance.
+
+-- 2. list the top 2 restaurants by distance.
+
+-- 3. list the top 2 restaurants by stars.
+
+-- 4. list the top 2 restaurants by stars where the distance is less than 2 miles.
+
+-- 5. count the number of restaurants in the db.
+
+-- 6. count the number of restaurants by category.
+
+-- 7. get the average stars per restaurant by category.
+
+-- 8. get the max stars of a restaurant by category.
