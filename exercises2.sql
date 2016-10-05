@@ -28,24 +28,102 @@ CREATE TABLE review (
 );
 
 -- Insert info into table restaurant
-INSERT INTO restaurant (name, address, category) values ('Naanstop', '123 Fake St.', 'Fast Food');
-INSERT INTO restaurant (name, address, category) values ('Subway', '124 Fake St.', 'Fast Food');
-INSERT INTO restaurant (name, address, category) values ('Chick-Fil-A', '125 Fake St.', 'Fast Food');
-INSERT INTO restaurant (name, address, category) values ('Krystal', '126 Fake St.', 'Fast Food');
-INSERT INTO restaurant (name, address, category) values ('McDonalds', '127 Fake St.', 'Casual');
-INSERT INTO restaurant (name, address, category) values ('Wendy''s', '128 Fake St.', 'Casual');
-INSERT INTO restaurant (name, address, category) values ('Churche''s Chicken', '129 Fake St.', 'Casual');
-INSERT INTO restaurant (name, address, category) values ('Mrs. Winner''s', '130 Fake St.', 'Fine Dining');
-INSERT INTO restaurant (name, address, category) values ('Long John Silvers', '131 Fake St.', 'Fine Dining');
-INSERT INTO restaurant (name, address, category) values ('Captain D''s', '132 Fake St.', 'Fine Dining');
-INSERT INTO restaurant (name, address, category) values ('Papa John''s', '133 Fake St.', 'Fine Dining');
+INSERT INTO restaurant
+(
+  name,
+  address,
+  category
+)
+values
+(
+  'Naanstop',
+  '123 Fake St.',
+  'Fast Food'
+),
+(
+  'Subway',
+  '124 Fake St.',
+  'Fast Food'
+),
+(
+  'Chick-Fil-A',
+  '125 Fake St.',
+  'Fast Food'
+),
+(
+  'Krystal',
+  '126 Fake St.',
+  'Fast Food'
+),
+(
+  'McDonalds',
+  '127 Fake St.',
+  'Casual'
+),
+(
+  'Wendy''s',
+  '128 Fake St.',
+  'Casual'
+),
+(
+  'Churche''s Chicken',
+  '129 Fake St.',
+  'Casual'
+),
+(
+  'Mrs. Winner''s',
+  '130 Fake St.',
+  'Fine Dining'
+),
+(
+  'Long John Silvers',
+  '131 Fake St.',
+  'Fine Dining'
+),
+(
+  'Captain D''s',
+  '132 Fake St.',
+  'Fine Dining'
+),
+(
+  'Papa John''s',
+  '133 Fake St.',
+  'Fine Dining'
+);
 
 -- Insert info into table reviewer
-INSERT INTO reviewer (name, email, karma) values ('John Goodman', 'jgoodman@email.com', 7);
-INSERT INTO reviewer (name, email, karma) values ('Christian Slater', 'cslater@email.com', 4);
-INSERT INTO reviewer (name, email, karma) values ('Wierd Al', 'oogabooga@emailemail.com', 0);
-INSERT INTO reviewer (name, email, karma) values ('Donald Trump', 'shitheel@wanker.com', .3);
-INSERT INTO reviewer (name, email, karma) values ('Rosie Odonnel', 'rodonnel@email.com', 7);
+INSERT INTO reviewer
+(
+  name,
+  email,
+  karma
+)
+values
+(
+  'John Goodman',
+  'jgoodman@email.com',
+  7
+),
+(
+  'Christian Slater',
+  'cslater@email.com',
+  4
+),
+(
+  'Wierd Al',
+  'oogabooga@emailemail.com',
+  0
+),
+(
+  'Donald Trump',
+  'shitheel@wanker.com',
+  .3
+),
+(
+  'Rosie Odonnel',
+  'rodonnel@email.com',
+  7
+);
 
 -- Insert info into table review
 INSERT INTO review (author_reviewer_id, stars, title, review, restaurant_id) values (4, 5, 'Best Indian Food Ever', 'The only time I had better Indian food was at Trump Tower!', 1);
@@ -66,7 +144,7 @@ select name, round(avg(stars), 2) from restaurant, review where restaurant.id = 
 -- 5. get the number of reviews written for each restaurant. Select the restaurant name and the review count.
 select name, count(review) from restaurant, review where restaurant.id = review.restaurant_id group by restaurant.name;
 -- 6. list each review along with the restaurant, and the reviewer's name. Select the restaurant name, the review text, and the reviewer name
-
+select review, reviewer.name, restaurant.name from review, restaurant, reviewer where review.reviewer_id = reviewer.id and restaurant.id = review.reviewer_id group by restaurant.name;
 -- 7. get the average stars by reviewer (reviewer name, average star rating)
 
 -- 8. get the lowest star rating for each reviewer (reviewer name, lowest star rating)
